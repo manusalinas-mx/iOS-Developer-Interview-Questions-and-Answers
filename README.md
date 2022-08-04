@@ -369,7 +369,7 @@ We are going to **take optional** value and we are going **to bind it non option
 **Polymorphism** is the ability of a class instance to be substituted by a class instance of one of its subclasses.
 
 
-### **Explain `In-app Purchase products and subscriptions`**ç
+### **Explain `In-app Purchase products and subscriptions`**
 
 - **Consumable products:** can be purchased more than once and used items would have to re-purchase.
 - **Non-consumable products:** user would be able to restore this functionality in the future, should they need to reinstall the app for any reason. We can also add subscriptions to our app.
