@@ -423,233 +423,83 @@ Both are used in Xcode to layout screens (view controllers).
 - A **Storyboard** shows many view controllers and also shows the relationship between them.
 
 
-### ****
+### **Explain Data Structures**
 
+`Arrays`, `Sets`, `Tuples` and `Dictionaries` are all collections of data structures that store data in one place.
 
-### ****
 
+### **Explain `CodingKey` Protocol**
 
-### ****
+The **CodingKeys** enum (_Protocol_) lets you rename specific properties in case the serialized format doesn’t match the requirements of the API. **CodingKeys** should have nested enum.
 
 
-### ****
+### **What is `URLSession`?**
 
+When we want to retrieve contents from a certain URL, we choose to use `URLConnection`. 
 
-### ****
+There are 3 types of tasks:
+1. **Data tasks**: getting data to memory
+2. **Download tasks**: downloading file to disk
+3. **Upload tasks**: uploading file from disk and receiving response as data in memory
 
 
-### ****
+### **How does TestFlight make a difference?**
 
+- Multiple builds distribution
+- Testing groups
+- Internal auto distribution
+- Tester metrics
+- Increased to 10,000 test users
+- Public Link
 
-### ****
 
+### **Explain `@objc` inference**
 
-### ****
+We can tag a **Swift** declaration with **@objc** to indicate that it should be available to **Objective-C**. 
 
+The most common place for this is any **Swift** method we want to refer to using a **selector**.
 
-### ****
 
+### **Explain VIPER Architecture**
 
-### ****
+**Viper** is an another design patters. It is based on **Single Responsibility Principle.**
 
+It has 5 layers: 
+- **V**iew
+- **I**nteractor
+- **P**resenter
+- **E**ntity
+- **R**outer
 
-### ****
+**Advantages** of Viper architecture is c**ommunication from one entity to another is given through protocols**. 
 
+> The idea is to isolate our app’s dependencies, balancing the delegation of responsibilities among the entities.
 
-### ****
 
+### **Explain `Queues`**
 
-### ****
+**Queues** are **_used to store a set of data_**, but are different in that the first item to go into this collection, will be the first item to be removed. Also well known as **FIFO** which means, `first in first out`.
 
 
-### ****
+### **Explain `Result` Type**
 
+The **Result** type is implemented as an enum that has 2 cases: **success** and **failure** callbacks. 
 
-### ****
+**Result** has 4 other methods: 
+1. map()
+2. flatMap()
+3. mapError()
+4. flatMapError()
 
+Each of these gives you the ability to transform either **success** or **error**.
 
-### ****
 
+### **What is the difference between `UIKit` and `SwiftUI`?**
 
-### ****
+- **UIKit** is an imperative event-driven framework for building User Interfaces for iOS platform. 
+- **SwiftUI** is a declarative framework for building User Interfaces for building User Interfaces for Apple platform.
 
 
-### ****
+### **Explain `abs()` function**
 
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
-
-### ****
-
+You use the **abs() function** to calculate the **_positive difference_** between the one value to another value.
