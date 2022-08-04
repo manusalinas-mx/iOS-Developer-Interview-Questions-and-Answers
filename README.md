@@ -255,6 +255,222 @@ An **object** is an instance of a **class**.
 5. **Suspended** — The app is in the background, but no code is being executed.
 
 
+### **What is `DispatchGroup`?**
+
+The most basic answer: If we need to wait on a couple of **asynchronous** or **synchronous** operations before proceeding, we can use **DispatchGroup**.
+
+### **Where do we use `Dependency Injection`?**
+
+We use a **storyboard** or **xib** in our iOS app, then we created **IBOutlets**. **IBOutlet** is a property related to a view. These are injected into the view controller when it is instantiated, which is essentially a form of **Dependency Injection**.
+
+- There are forms of dependency injection: 
+  - constructor injection
+  - property injection
+  - method injection
+
+
+### **Please explain types of notifications**
+
+- There are 2 type of notifications:
+  - **Remote notification**
+    - requires connection to a server.  
+  - **Local notification** 
+    - doesn't require server connection. Local notifications happen on device.
+
+
+### **What kind of `hight order functions` can we use on collection types?**
+
+- **map(_:):** 
+  - Returns an array of results after transforming each element in the sequence using the provided closure.
+- **filter(_:):** 
+  - Returns an array of elements that satisfy the provided closure predicate.
+- **reduce(_:_:):** 
+  - Returns a single value by combining each element in the sequence using the provided closure.
+- **sorted(by:):** 
+  - Returns an array of the elements in the sequence sorted based on the provided closure predicate.
+
+
+### **Explain `Bridging Headers` in iOS project**
+
+**Bridging Headers** allow us to include `Objective-C` files with our `Swift` files.
+
+
+### **What is `Hashable`?**
+
+**Hashable** allows us to use our objects as keys in a dictionary. 
+
+So we can make our custom types that can be compared for its equality using it’s `hashValue`
+
+
+### **How many different ways to pass data in Swift?**
+
+There are many different ways such as **Delegate**, **KVO**, **Segue**, **NSNotification**, **Target-Action** and **Callbacks**.
+
+
+### **What is the difference `Delegates` and `Callbacks`?**
+
+The difference between **delegates** and **callbacks** is that...
+- with **delegates**, the NetworkService is telling the delegate “There is something changed.” 
+- With **callbacks**, the delegate is observing the NetworkService.
+
+
+### **What is Pointer?**
+
+A **pointer** is a direct reference to a memory address. **Pointers** remove a layer of abstraction and let you see how that value is stored.
+
+
+### **What is the difference between `try?` and `try!` ?**
+
+- **try?** allows us to ignore our error to become **nil**. 
+- We use **try!** it for our function to never encounter an error.
+
+
+### **Why do we use `availability` attributes?**
+
+ **Availability Attributes** lets us to support previous version iOS.
+
+
+### **What is `Encapsulation`?**
+
+**Encapsulation** is an object-oriented design principles and hides the internal states and functionality of objects. That means objects keep their state information **private**.
+
+
+### **How could we get `device token`?**
+
+1. we must show the user’s permission screen, after we can register for remote notifications.
+2. If previous step go well, the system will provide **device token**.
+
+> **_Note:_** If we uninstall or reinstall the app, the device token would change.
+
+
+### **Explain differences between `service extension` and `content extension`**
+
+- The **service extension** lets us the chance to change content in the notification before it is presented. 
+- The **content extension** gives us the tools, we have in an app to design the notification
+
+
+### **What is `Instruments`?**
+
+**Instruments** is a powerful performance tuning tool to analyze that _performance, memory footprint, smooth animation, energy usage, leaks_ and _file/network activity_.
+
+
+### **What is `Deep Linking`?**
+
+**Deep linking** is a way to pass data to your application from any platform like, _website_ or _any other application_. By tapping once on link, you can pass necessary data to your application.
+
+
+### **What is `Optional Binding`?**
+
+We are going to **take optional** value and we are going **to bind it non optional** constant. We used `**If let**` structure or `**Guard**` statement.
+
+
+### **Explain `Polymorphism`**
+
+**Polymorphism** is the ability of a class instance to be substituted by a class instance of one of its subclasses.
+
+
+### **Explain `In-app Purchase products and subscriptions`**ç
+
+- **Consumable products:** can be purchased more than once and used items would have to re-purchase.
+- **Non-consumable products:** user would be able to restore this functionality in the future, should they need to reinstall the app for any reason. We can also add subscriptions to our app.
+- **Non-Renewing Subscription:** Used for a certain amount of time and certain content.
+- **Auto-Renewing Subscription:** Used for recurring monthly subscriptions.
+
+
+### **What is `Protocol`?**
+
+A **protocol** defines a blueprint of _methods_, _properties_ and _other_ requirements that suit a particular task or piece of functionality.
+
+The **protocol can then be adopted** by a `class`, `structure`, or `enumeration` to provide an actual implementation of those requirements.
+
+
+### **Explain `JSONEncoder` and `JSONDecoder`**
+
+- **Decodable** protocol, which allows us to take data and create instances of our object, populated with the data passed down from the server.
+- **Encodable** protocol to take instances of our object and turn it into data. With that data, we can store it to the files, send it to the server, whatever you need to do with it.
+
+
+### **What is `NotificationCenter`?**
+
+**NotificationCenter** is an observer pattern, The NSNotificationCenter singleton allows us to broadcast information using an object called NSNotification.
+
+The biggest difference between **KVO** and **NotificationCenter** is...
+- **KVO** tracks specific changes to an object.
+- **NotificationCenter** is used to track generic events.
+
+
+### **Explain `subscripts`**
+
+**Subscripts** are analogous to methods. 
+
+`Classes`, `structures`, and `enumerations` can define subscripts, which are **shortcuts for accessing the member elements of** a `collection`, `list`, or `sequence`.
+
+
+### **Explain `AVFoundation` framework**
+
+We can create, play audio and visual media. 
+
+**AVFoundation** allows us to work on a detailed level with time-based audio-visual data. With it, we can create, edit, analyze, and re-encode media files. 
+
+**AVFoundation** has two sets of API, one that’s **video**, and one that is **audio**.
+
+
+### **What’s the difference between a `Xib` and a `Storyboard`?**
+
+Both are used in Xcode to layout screens (view controllers).
+
+- A **Xib** defines a single View or View Controller screen
+- A **Storyboard** shows many view controllers and also shows the relationship between them.
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
 ### ****
 
 
@@ -304,3 +520,136 @@ An **object** is an instance of a **class**.
 
 
 ### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
+
+### ****
+
