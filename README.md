@@ -113,39 +113,42 @@ There are **3 ways** to pass data between view controllers.
 
 The common terminology: **process**, **thread**, **multithreading**, **and** **others**. 
 
-Terminology:
-- **Process**, An instance of an executing app
-- **Thread**, Path of execution for code
-- **Multithreading**, Multiple threads or multiple paths of execution running at the same time.
-- **Concurrency**, Execute multiple tasks at the same time in a scalable manner.
-- **Queues**, Queues are lightweight data structures that manage objects in the order of First-in, First-out (FIFO).
-- **Synchronous** vs **Asynchronous** tasks
+- Terminology:
+  - **Process**, An instance of an executing app
+  - **Thread**, Path of execution for code
+  - **Multithreading**, Multiple threads or multiple paths of execution running at the same time.
+  - **Concurrency**, Execute multiple tasks at the same time in a scalable manner.
+  - **Queues**, Queues are lightweight data structures that manage objects in the order of First-in, First-out (FIFO).
+  - **Synchronous** vs **Asynchronous** tasks
 
 
 ### **Readers-Writers**
 
 Multiple threads reading at the same time while there should be only one thread writing. The solution to the problem is a **readers-writers** lock which allows concurrent read-only access and an exclusive write access.
 
-Terminology:
-- **Race Condition** A race condition occurs when two or more threads can access shared data and they try to change it at the same time.
-- **Deadlock** A deadlock occurs when two or sometimes more tasks wait for the other to finish, and neither ever does.
-- **Readers-Writers problem** Multiple threads reading at the same time while there should be only one thread writing.
-- **Readers-writer lock** Such a lock allows concurrent read-only access to the shared resource while write operations require exclusive access.
-- **Dispatch Barrier Block** Dispatch barrier blocks create a serial-style bottleneck when working with concurrent queues.
+- Terminology:
+  - **Race Condition** A race condition occurs when two or more threads can access shared data and they try to change it at the same time.
+  - **Deadlock** A deadlock occurs when two or sometimes more tasks wait for the other to finish, and neither ever does.
+  - **Readers-Writers problem** Multiple threads reading at the same time while there should be only one thread writing.
+  - **Readers-writer lock** Such a lock allows concurrent read-only access to the shared resource while write operations require exclusive access.
+  - **Dispatch Barrier Block** Dispatch barrier blocks create a serial-style bottleneck when working with concurrent queues.
 
 
 ### **NSOperation — NSOperationQueue — NSBlockOperation**
+
 - **NSOperation** adds a little extra overhead compared to GCD, but we can add dependency among various operations and re-use, cancel or suspend them.
 - **NSOperationQueue**, It allows a pool of threads to be created and used to execute NSOperations in parallel. Operation queues aren’t part of GCD.
 - **NSBlockOperation** allows you to create an NSOperation from one or more closures. NSBlockOperations can have multiple blocks, that run concurrently.
 
 
 ### **KVC — KVO**
+
 - **KVC** adds stands for **_Key-Value Coding_**. It’s a mechanism by which an object’s properties can be accessed using string’s at runtime rather than having to statically know the property names at development time.
 - **KVO** stands for **_Key-Value Observing_** and allows a controller or class to observe changes to a property value. In KVO, an object can ask to be notified of any changes to a specific property, whenever that property changes value, the observer is automatically notified.
 
 
 ### **Explain `Guard` statement**
+
 There are 3 big benefits to guard statement.
 
 1. Avoids the pyramid of doom, as others have mentioned — lots of annoying if let statements nested inside each other moving further and further to the right. 
@@ -153,40 +156,103 @@ There are 3 big benefits to guard statement.
 3. **guard** statement is another way to safely **unwrap** **optionals**.
 
 
-### ****
+### **What is the difference Non-Escaping and Escaping Closures?**
+
+- The lifecycle of a **non-escaping closure** is simple:
+  - Pass a closure into a function
+  - The function runs the closure (or not)
+  - The function returns
+
+**Escaping closure** means, inside the function, you can still run the closure (or not); the extra bit of the closure is stored someplace that will outlive the function. 
+
+- There are several ways to have a closure escape its containing function:
+  - **Asynchronous execution**: If you execute the closure asynchronously on a dispatch queue, the queue will hold onto the closure for you. You have no idea when the closure will be executed and there’s no guarantee it will complete before the function returns.
+  - **Storage**: Storing the closure to a global variable, property, or any other bit of storage that lives on past the function call means the closure has also escaped.
 
 
-### ****
+### **Explain `[weak self]` and `[unowned self]`?**
+
+- **unowned** (_non-strong reference_) does the same as **weak** with one exception: The variable will not become `nil` and must not be `optional`.    You can use it:
+  - Every time used with **non-optional** types
+  - Every time used with **let**
+
+- **weak self** you get to handle the case that it might be `nil` inside the closure at some point and therefore the variable must be an `optional`.  You can use it:
+  - In an **asynchronous** network request, is in a view controller where that request is used to populate the view.
 
 
-### ****
+### **What is ARC?**
+
+_Automatic Reference Counting_. This means that it **only** frees up memory for objects when there are **zero strong** references/ to them.
 
 
-### ****
+### **Difference between `SceneDelegate` and `AppDelegate`**
+
+- **AppDelegate** is part of the UIKit framework. 
+- The **SceneDelegate** takes over this roles from the app delegate with **iOS 13**. The concept of a window is replaced by that of a scene. Multiple scenes allow us to build multi-window apps on **iOS** and **iPadOS**.
 
 
-### ****
+### **Why is everything in a `do-catch` block?**
+
+In Swift, errors are thrown and handled inside of **do-catch blocks**. 
+
+This allows us to customize our error handling and perform specific actions based on the error. With a `do-catch` statement, we can use **try**. This allows us to check meaningful errors.
 
 
-### ****
+### **Explain Swift Package Manager (SPM)**
+
+The **Swift Package Manager** addresses the problem of dependency hell that can happen when using many third party libraries. The Swift Package Manager only supports using the **master branch** and now supports packages with **Swift**, **C**, **C++** and **Objective-C**.
 
 
-### ****
+### **How is an `inout` parameter different from a `regular` parameter?**
+
+A **Inout** passes by _reference_ while a **regular** parameter passes by _value_.
 
 
-### ****
+### **Explain `View Controller Lifecycle` events order?**
+
+- There are a few different lifecycle events:
+  - **loadView** 
+    - Creates the view that the controller manages. It’s only called when the view controller is created and only when done programatically. It is responsible for making the view property exist in the first place.
+  - **viewDidLoad** 
+    - Called after the controller’s view is loaded into memory. It’s only called when the view is created.
+  - **viewWillAppear** 
+    - It’s called whenever the view is presented on the screen. In this step the view has bounds defined but the orientation is not applied.
+  - **viewWillLayoutSubviews**
+    - Called to notify the view controller that its view is about to layout its subviews. This method is called every time the frame changes
+  - **viewDidLayoutSubviews**
+    - Called to notify the view controller that its view has just laid out its subviews. Make additional changes here after the view lays out its subviews.
+  - **viewDidAppear**
+    - Notifies the view controller that its view was added to a view hierarchy.
+  - **viewWillDisappear**
+    - Before the transition to the next view controller happens and the origin view controller gets removed from screen, this method gets called.
+  - **viewDidDisappear**
+    - After a view controller gets removed from the screen, this method gets called. You usually override this method to stop tasks that are should not run while a view controller is not on screen.
+  - **viewWillTransition(to:with:)**
+    - When the interface orientation changes, UIKit calls this method on the window’s root view controller before the size changes are about to be made. The root view controller then notifies its child view controllers, propagating the message throughout the view controller hierarchy.
 
 
-### ****
+### **What is `Class`?**
+
+A **class** defines an object and how it works. In this way, a **class** is like a blueprint of an object.
+
+### **What is `Object`?**
+
+An **object** is an instance of a **class**.
 
 
-### ****
+### **When and why do we use an `object` as opposed to a `struct`?**
+
+**Structs** are value types. **Classes** (_Objects_) are reference types.
 
 
-### ****
 
+### **What are the `states` of an iOS App?**
 
-### ****
+1. **Non-running** — The app is not running.
+2. **Inactive** — The app is running in the foreground, but not receiving events. An iOS app can be placed into an inactive state, for example, when a call or SMS message is received.
+3. **Active** — The app is running in the foreground, and receiving events.
+4. **Background** — The app is running in the background, and executing code.
+5. **Suspended** — The app is in the background, but no code is being executed.
 
 
 ### ****
