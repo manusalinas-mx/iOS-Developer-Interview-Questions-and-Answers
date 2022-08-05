@@ -505,7 +505,7 @@ Each of these gives you the ability to transform either **success** or **error**
 You use the **abs() function** to calculate the **_positive difference_** between the one value to another value.
 
 
-### **Explain how to preset a `SwiftUI` view on `UIKit`**
+### **Explain how to present a `SwiftUI` view on `UIKit`**
 
 We need to use the class `UIHostingController` passing it the corresponding view
 
@@ -514,12 +514,123 @@ let viewController = UIHostingController(rootView: ContentView())
 ```
 
 
-### **Explain how to preset a `UIKit` ViewController on `SwiftUI`**
+### **Explain how to present a `UIKit` ViewController on `SwiftUI`**
 
 We can use `UIViewControllerRepresentable` & `UIViewRepresentable` 
 
 - **UIViewControllerRepresentable:** Allows to use an `UIViewController` on **SwiftUI**.
+  - Example:
+
+**UIKit ViewController**
+```
+struct ImagePicker: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) var presentationMode
+    @Binding var image: UIImage?
+    
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
+        let picker = UIImagePickerController()
+        picker.delegate = context.coordinator
+        return picker
+    }
+    
+    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePicker>) { }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+        
+        let imagePicker: ImagePicker
+        
+        init(_ imagePicker: ImagePicker) {
+            self.imagePicker = imagePicker
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let image = info[.originalImage] as? UIImage {
+                imagePicker.image = image
+            }
+            imagePicker.presentationMode.wrappedValue.dismiss()
+        }
+    }
+}
+```
+
+**Usage**
+
+```
+struct ContentView: View {
+    @State var imageUser: UIImage?
+    @State var showPicker = false
+    
+    var body: some View {
+        VStack(spacing: 15) {
+            if let imageUser = imageUser {
+                Image(uiImage: imageUser)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 300)
+            } else {
+                Text("No image selected")
+            }
+            Button("Select image") {
+                showPicker.toggle()
+            }
+        }
+        .sheet(isPresented: $showPicker) {
+            ImagePicker(image: $imageUser)
+        }
+    }
+}
+```
+
+
 - **UIViewRepresentable:** Allows to use an `UIView` on **SwiftUI**.
+  - Example:
+
+**UIKit View**
+```
+import SwiftUI
+import UIKit
+
+struct TextHtml: UIViewRepresentable {
+    let html: String?
+    
+    init(_ html: String?) {
+        self.html = html
+    }
+    
+    func makeUIView(context: UIViewRepresentableContext<Self>) -> UILabel {
+        let label = UILabel()
+        DispatchQueue.main.async {
+            if let html = html, let data = html.data(using: .utf8), let attributedString = try? NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil) {
+                label.attributedText = attributedString
+            }
+        }
+        label.numberOfLines = 0
+        
+        return label
+    }
+    
+    func updateUIView(_ uiView: UILabel, context: UIViewRepresentableContext<Self>) { }
+}
+```
+
+**Usage**
+```
+struct ContentView: View {
+    var body: some View {
+        Group {
+            TextHtml("<head><style type='text/css'>p { font: 20pt 'AmericanTypewriter'; color: #1a004b; }</style></head><p><strong>HTML text</strong></br> This work fine.</p>")
+        }
+    }
+}
+```
+
+
+
+
 
 
 
