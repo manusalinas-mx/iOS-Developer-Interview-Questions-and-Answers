@@ -519,11 +519,13 @@ let viewController = UIHostingController(rootView: ContentView())
 We can use `UIViewControllerRepresentable` & `UIViewRepresentable` 
 
 - **UIViewControllerRepresentable:** Allows to use an `UIViewController` on **SwiftUI**.
-  - Example:
-
-<details><summary>Implementation</summary>
+ 
+<details><summary>Example</summary>
 <p>
+  
 **UIKit ViewController**
+  
+  
 ```
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
@@ -591,11 +593,13 @@ struct ContentView: View {
 
 
 - **UIViewRepresentable:** Allows to use an `UIView` on **SwiftUI**.
-  - Example:
-
-<details><summary>Implementation</summary>
+   
+<details><summary>Example</summary>
 <p>
+  
+  
 **UIKit View**
+  
 ```
 import SwiftUI
 import UIKit
