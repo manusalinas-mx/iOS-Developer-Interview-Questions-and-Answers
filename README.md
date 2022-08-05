@@ -521,6 +521,8 @@ We can use `UIViewControllerRepresentable` & `UIViewRepresentable`
 - **UIViewControllerRepresentable:** Allows to use an `UIViewController` on **SwiftUI**.
   - Example:
 
+<details><summary>Implementation</summary>
+<p>
 **UIKit ViewController**
 ```
 struct ImagePicker: UIViewControllerRepresentable {
@@ -584,11 +586,15 @@ struct ContentView: View {
     }
 }
 ```
+</p>
+</details>
 
 
 - **UIViewRepresentable:** Allows to use an `UIView` on **SwiftUI**.
   - Example:
 
+<details><summary>Implementation</summary>
+<p>
 **UIKit View**
 ```
 import SwiftUI
@@ -627,6 +633,8 @@ struct ContentView: View {
     }
 }
 ```
+</p>
+</details>
 
 
 
