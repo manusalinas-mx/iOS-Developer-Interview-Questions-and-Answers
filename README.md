@@ -10,8 +10,9 @@
   Grand Central Dispatch (**GCD**) is a low-level API that allows users to run concurrent tasks(run simultaneously). It also manages threads in the background. Apple’s solution is to build concurrency and parallelism into iOS applications so different tasks can run concurrently in the background without affecting the main thread.
   
 ### **What is the difference between `Synchronous` & `Asynchronous` task?**
-     - **Synchronous**: waits until the task have completed 
-     - **Asynchronous**: completes a task in the background and can notify you when complete
+
+- **Synchronous**: waits until the task have completed 
+- **Asynchronous**: completes a task in the background and can notify you when complete
 
 
 ### **What is made up of `NSError` object?**
