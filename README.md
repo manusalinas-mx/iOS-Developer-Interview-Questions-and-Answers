@@ -503,3 +503,23 @@ Each of these gives you the ability to transform either **success** or **error**
 ### **Explain `abs()` function**
 
 You use the **abs() function** to calculate the **_positive difference_** between the one value to another value.
+
+
+### **Explain how to preset a `SwiftUI` view on `UIKit`**
+
+We need to use the class `UIHostingController` passing it the corresponding view
+
+```
+let viewController = UIHostingController(rootView: ContentView())
+```
+
+
+### **Explain how to preset a `UIKit` ViewController on `SwiftUI`**
+
+We can use `UIViewControllerRepresentable` & `UIViewRepresentable` 
+
+- **UIViewControllerRepresentable:** Allows to use an `UIViewController` on **SwiftUI**.
+- **UIViewRepresentable:** Allows to use an `UIView` on **SwiftUI**.
+
+
+
