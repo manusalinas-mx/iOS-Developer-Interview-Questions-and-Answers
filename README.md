@@ -4,6 +4,12 @@
 
 ---
 
+Content: 
+- [Explain what is `Grand Central Dispatch` (GCD) in iOS?](#explain-what-is-grand-central-dispatch-gcd-in-ios)
+- [What is the difference between `Synchronous` & `Asynchronous` task?](#what-is-the-difference-between-synchronous--asynchronous-task)
+- [What is made up of `NSError` object?](#what-is-made-up-of-nserror-object)
+
+---
 
 ### **Explain what is `Grand Central Dispatch` (GCD) in iOS?**
 
