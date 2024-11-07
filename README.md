@@ -4,10 +4,77 @@
 
 ---
 
-Content: 
+## Content Questions: 
 - [Explain what is `Grand Central Dispatch` (GCD) in iOS?](#explain-what-is-grand-central-dispatch-gcd-in-ios)
 - [What is the difference between `Synchronous` & `Asynchronous` task?](#what-is-the-difference-between-synchronous--asynchronous-task)
 - [What is made up of `NSError` object?](#what-is-made-up-of-nserror-object)
+- [What is `Enum` or `Enumerations`?](#what-is-enum-or-enumerations)
+- [What’s the difference between the `frame` and the `bounds`?](#whats-the-difference-between-the-frame-and-the-bounds)
+- [Why is design pattern very important?](#why-is-design-pattern-very-important)
+- [What is Singleton Pattern?](#what-is-singleton-pattern)
+- [What is Facade Design Pattern?](#what-is-facade-design-pattern)
+- [What is Decorator Design Pattern?](#what-is-decorator-design-pattern)
+- [What is Adapter Pattern?](#what-is-adapter-pattern)
+- [What is Observer Pattern?](#what-is-observer-pattern)
+- [Explain MVC](#explain-mvc)
+- [Explain `generics` in Swift?](#explain-generics-in-swift)
+- [Explain `lazy` in Swift?](#explain-lazy-in-swift)
+- [Explain what is `defer`?](#explain-what-is-defer)
+- [How to pass data between view controllers?](#how-to-pass-data-between-view-controllers)
+- [What is Concurrency?](#what-is-concurrency)
+- [Readers-Writers](#readers-writers)
+- [NSOperation — NSOperationQueue — NSBlockOperation](#nsoperation--nsoperationqueue--nsblockoperation)
+- [KVC — KVO](#kvc--kvo)
+- [Explain `Guard` statement](#explain-guard-statement)
+- [What is the difference Non-Escaping and Escaping Closures?](#what-is-the-difference-non-escaping-and-escaping-closures)
+- [Explain `[weak self]` and `[unowned self]`?](#explain-weak-self-and-unowned-self)
+- [What is ARC?](#what-is-arc)
+- [Difference between `SceneDelegate` and `AppDelegate`](#difference-between-scenedelegate-and-appdelegate)
+- [Why is everything in a `do-catch` block?](#why-is-everything-in-a-do-catch-block)
+- [Explain Swift Package Manager (SPM)](#explain-swift-package-manager-spm)
+- [How is an `inout` parameter different from a `regular` parameter?](#how-is-an-inout-parameter-different-from-a-regular-parameter)
+- [Explain `View Controller Lifecycle` events order?](#explain-view-controller-lifecycle-events-order)
+- [What is `Class`?](#what-is-class)
+- [What is `Object`?](#what-is-object)
+- [When and why do we use an `object` as opposed to a `struct`?](#when-and-why-do-we-use-an-object-as-opposed-to-a-struct)
+- [What are the `states` of an iOS App?](#what-are-the-states-of-an-ios-app)
+- [What is `DispatchGroup`?](#what-is-dispatchgroup)
+- [Where do we use `Dependency Injection`?](#where-do-we-use-dependency-injection)
+- [Please explain types of notifications](#please-explain-types-of-notifications)
+- [What kind of `high order functions` can we use on collection types?](#what-kind-of-high-order-functions-can-we-use-on-collection-types)
+- [Explain `Bridging Headers` in iOS project](#explain-bridging-headers-in-ios-project)
+- [What is `Hashable`?](#what-is-hashable)
+- [How many different ways to pass data in Swift?](#how-many-different-ways-to-pass-data-in-swift)
+- [What is the difference `Delegates` and `Callbacks`?](#what-is-the-difference-delegates-and-callbacks)
+- [What is Pointer?](#what-is-pointer)
+- [What is the difference between `try?` and `try!`?](#what-is-the-difference-between-try-and-try)
+- [Why do we use `availability` attributes?](#why-do-we-use-availability-attributes)
+- [What is `Encapsulation`?](#what-is-encapsulation)
+- [How could we get `device token`?](#how-could-we-get-device-token)
+- [Explain differences between `service extension` and `content extension`](#explain-differences-between-service-extension-and-content-extension)
+- [What is `Instruments`?](#what-is-instruments)
+- [What is `Deep Linking`?](#what-is-deep-linking)
+- [What is `Optional Binding`?](#what-is-optional-binding)
+- [Explain `Polymorphism`](#explain-polymorphism)
+- [Explain `In-app Purchase products and subscriptions`](#explain-in-app-purchase-products-and-subscriptions)
+- [What is `Protocol`?](#what-is-protocol)
+- [Explain `JSONEncoder` and `JSONDecoder`](#explain-jsonencoder-and-jsondecoder)
+- [What is `NotificationCenter`?](#what-is-notificationcenter)
+- [Explain `subscripts`](#explain-subscripts)
+- [Explain `AVFoundation` framework](#explain-avfoundation-framework)
+- [What’s the difference between a `Xib` and a `Storyboard`?](#whats-the-difference-between-a-xib-and-a-storyboard)
+- [Explain Data Structures](#explain-data-structures)
+- [Explain `CodingKey` Protocol](#explain-codingkey-protocol)
+- [What is `URLSession`?](#what-is-urlsession)
+- [How does TestFlight make a difference?](#how-does-testflight-make-a-difference)
+- [Explain `@objc` inference](#explain-objc-inference)
+- [Explain VIPER Architecture](#explain-viper-architecture)
+- [Explain `Queues`](#explain-queues)
+- [Explain `Result` Type](#explain-result-type)
+- [What is the difference between `UIKit` and `SwiftUI`?](#what-is-the-difference-between-uikit-and-swiftui)
+- [Explain `abs()` function](#explain-abs-function)
+- [Explain how to present a `SwiftUI` view on `UIKit`](#explain-how-to-present-a-swiftui-view-on-uikit)
+- [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
 
@@ -217,6 +284,9 @@ A **Inout** passes by _reference_ while a **regular** parameter passes by _value
 
 ### **Explain `View Controller Lifecycle` events order?**
 
+![5018abb-b4c-a38d-1d3d-6c2e6000fb8f_View_Controller_Lifecycle](https://github.com/user-attachments/assets/e2036689-d3d7-4a4d-95f3-34d69d435cb2)
+
+
 - There are a few different lifecycle events:
   - **loadView** 
     - Creates the view that the controller manages. It’s only called when the view controller is created and only when done programatically. It is responsible for making the view property exist in the first place.
@@ -283,6 +353,8 @@ We use a **storyboard** or **xib** in our iOS app, then we created **IBOutlets**
     - requires connection to a server.  
   - **Local notification** 
     - doesn't require server connection. Local notifications happen on device.
+  - **Silent notification** 
+    - Similar no remote notifications but they are transparent for the user (no visual, no sound) to do something in the background.
 
 
 ### **What kind of `hight order functions` can we use on collection types?**
