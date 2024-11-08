@@ -7,8 +7,10 @@
 ## Content Questions: 
 - [Explain what is `Grand Central Dispatch` (GCD) in iOS?](#explain-what-is-grand-central-dispatch-gcd-in-ios)
 - [What is the difference between `Synchronous` & `Asynchronous` task?](#what-is-the-difference-between-synchronous--asynchronous-task)
+- [Why are the asynchronous tasks in iOS development important and how do you handle asynchronous programming in iOS apps?](#why-are-the-asynchronous-tasks-in-ios-development-important-and-how-do-you-handle-asynchronous-programming-in-ios-apps)
 - [What is made up of `NSError` object?](#what-is-made-up-of-nserror-object)
 - [What is `Enum` or `Enumerations`?](#what-is-enum-or-enumerations)
+- [When is recommended to use `weak`, `unowned` and `strong` references?](#when-is-recommended-to-use-weak-unowned-and-strong-references)
 - [What’s the difference between the `frame` and the `bounds`?](#whats-the-difference-between-the-frame-and-the-bounds)
 - [Why is design pattern very important?](#why-is-design-pattern-very-important)
 - [What is Singleton Pattern?](#what-is-singleton-pattern)
@@ -87,6 +89,23 @@
 - **Synchronous**: waits until the task have completed 
 - **Asynchronous**: completes a task in the background and can notify you when complete
 
+### **Why are the `asynchronous tasks` in iOS development important and how do you handle asynchronous programming in iOS apps?**
+
+Asynchronous tasks are crucial in iOS development because they allow the app to handle potentially slow or resource-intensive operations without blocking the main thread, which is responsible for the user interface. This helps ensure a smooth user experience by preventing UI freezes and enabling responsive interactions even when the app is performing complex operations in the background.
+
+**Why Asynchronous Tasks are Important in iOS**
+
+1.	**Performance**: Many tasks, such as network requests, file I/O, or heavy computations, take time to complete. Running these tasks synchronously on the main thread can cause the app to appear unresponsive, leading to a poor user experience.
+2.	**Smooth UI**: In iOS, the main thread (or UI thread) is dedicated to rendering the user interface and processing user interactions. Blocking this thread with time-consuming operations results in a laggy or frozen UI. Asynchronous programming allows these tasks to run on background threads, keeping the UI responsive.
+3.	**Battery Efficiency**: Offloading tasks to run only when necessary, and in the background if possible, helps optimize power consumption, as the system can manage resources better across all apps.
+
+**Choosing the Right Asynchronous Tool**
+
+- For simple, one-off background tasks, **GCD** is generally sufficient.
+- For more complex task management, like dependencies and prioritization, **OperationQueue** is ideal.
+- For code clarity and simplicity, especially in Swift 5.5+, **async/await** provides a readable and maintainable solution.
+- For responding to continuous streams of data or for reactive programming, **Combine** is a good fit.
+
 
 ### **What is made up of `NSError` object?**
 
@@ -96,6 +115,30 @@ There are three parts of **NSError** object a `domain`, an `error code`, and a `
 ### **What is `Enum` or `Enumerations`?**
 
 **Enum** is a type that basically contains a group of related values in the same umbrella
+
+
+### **When is recommended to use `weak`, `unowned` and `strong` references?**
+
+In Swift, the choice between weak, unowned, and strong references depends on the relationship between the objects and their lifetimes:
+1. `Strong` references:
+- Default reference type.
+- The referenced object’s lifetime is extended as long as the strong reference exists.
+- Use when you want the reference to own and manage the lifecycle of the object.
+- **Example**: Holding a reference to a view model in a view controller.
+
+
+2.	`Weak` references:
+- The referenced object’s lifetime is not extended by the reference.
+- Use when you want to avoid retain cycles (where two objects hold strong references to each other) but still need to reference an object that can be deallocated, such as delegates or closures capturing self.
+- **Important**: The object being referenced can become nil, so the reference is automatically set to nil when the object is deallocated.
+- **Example**: A delegate in a view controller.
+
+
+3.	`Unowned` references:
+- Similar to weak references, but the referenced object is assumed to never be deallocated while the reference exists.
+- Use when you are certain the referenced object will outlive the reference (i.e., they have a parent-child relationship where the child doesn’t outlive the parent).
+- **Important**: Accessing a deallocated object via an unowned reference causes a runtime crash.
+- **Example**: A closure capturing self in a parent object where self is guaranteed to not be deallocated before the closure.
 
 
 ### **What’s the difference between the `frame` and the `bounds`?**
