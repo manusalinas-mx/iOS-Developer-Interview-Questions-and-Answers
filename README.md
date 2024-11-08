@@ -31,7 +31,7 @@
 - [NSOperation — NSOperationQueue — NSBlockOperation](#nsoperation--nsoperationqueue--nsblockoperation)
 - [KVC — KVO](#kvc--kvo)
 - [Explain `Guard` statement](#explain-guard-statement)
-- [What is the difference Non-Escaping and Escaping Closures?](#what-is-the-difference-non-escaping-and-escaping-closures)
+- [What is the difference `Non-Escaping` and `Escaping` Closures?](#what-is-the-difference-non-escaping-and-escaping-closures)
 - [Explain `[weak self]` and `[unowned self]`?](#explain-weak-self-and-unowned-self)
 - [What is ARC?](#what-is-arc)
 - [Difference between `SceneDelegate` and `AppDelegate`](#difference-between-scenedelegate-and-appdelegate)
@@ -471,7 +471,7 @@ There are 3 big benefits to guard statement.
 3. **guard** statement is another way to safely **unwrap** **optionals**.
 
 
-### **What is the difference Non-Escaping and Escaping Closures?**
+### **What is the difference `Non-Escaping` and `Escaping` Closures?**
 
 - The lifecycle of a **non-escaping closure** is simple:
   - Pass a closure into a function
