@@ -96,7 +96,7 @@ In **SwiftUI**, a `PreferenceKey` is used to **pass data up** the view hierarchy
 <details><summary>Example</summary>
 <p>
 
-```
+```swift
 import SwiftUI
 
 // Define the PreferenceKey
@@ -694,7 +694,7 @@ You use the **abs() function** to calculate the **_positive difference_** betwee
 
 We need to use the class `UIHostingController` passing it the corresponding view
 
-```
+```swift
 let viewController = UIHostingController(rootView: ContentView())
 ```
 
@@ -711,7 +711,7 @@ We can use `UIViewControllerRepresentable` & `UIViewRepresentable`
 **UIKit ViewController**
   
   
-```
+```swift
 struct ImagePicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Binding var image: UIImage?
@@ -748,7 +748,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 **Usage**
 
-```
+```swift
 struct ContentView: View {
     @State var imageUser: UIImage?
     @State var showPicker = false
@@ -785,7 +785,7 @@ struct ContentView: View {
   
 **UIKit View**
   
-```
+```swift
 import SwiftUI
 import UIKit
 
@@ -813,7 +813,7 @@ struct TextHtml: UIViewRepresentable {
 ```
 
 **Usage**
-```
+```swift
 struct ContentView: View {
     var body: some View {
         Group {
