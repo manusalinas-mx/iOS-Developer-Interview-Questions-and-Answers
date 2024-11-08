@@ -737,12 +737,9 @@ The most basic answer: If we need to wait on a couple of **asynchronous** or **s
 
 We use a **storyboard** or **xib** in our iOS app, then we created **IBOutlets**. **IBOutlet** is a property related to a view. These are injected into the view controller when it is instantiated, which is essentially a form of **Dependency Injection**.
 
-- **There are 3 forms of dependency injection:** 
+**There are 3 forms of dependency injection (`Constructor`, `Property` & `Method`) :** 
   - `constructor` injection
-
-<details><summary>Constructor Sample</summary>
-<p>
-    
+  
 ```swift
 // Protocol defining a data service
 protocol DataService {
@@ -776,13 +773,9 @@ let dataViewModel = DataViewModel(dataService: remoteDataService)
 let data = dataViewModel.fetchData()
 print("Fetched Data:", data)
 ```
-</p>
-</details>
 
   - `property` injection
 
-<details><summary>Property Sample</summary>
-<p>
 
 ```swift
 // Protocol defining a networking service
@@ -818,13 +811,9 @@ let dataManager = DataManager()
 dataManager.networkingService = apiNetworkingService
 dataManager.fetchAndProcessData()
 ```
-</p>
-</details>
 
   - `method` injection
 
-<details><summary>Method Sample</summary>
-<p>
     
 ```swift
 // Dependencia que queremos inyectar
@@ -860,9 +849,6 @@ messageHandler.setPrinterService(printerService)
 messageHandler.sendMessage("Hello, Dependency Injection!")
 // Imprime: "Printing: Hello, Dependency Injection!"    
 ```
-</p>
-</details>
-
 
 ### **Please explain types of notifications**
 
