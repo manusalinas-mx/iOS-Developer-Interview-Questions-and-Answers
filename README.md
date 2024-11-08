@@ -5,6 +5,7 @@
 ---
 
 ## Content Questions: 
+- [Difference between `declarative` vs `imperative` programming?](#difference-between-declarative-vs-imperative-programming)
 - [What are `PreferenceKey` used for?](#what-are-preferencekey-used-for)
 - [Explain what is `Grand Central Dispatch` (GCD) in iOS?](#explain-what-is-grand-central-dispatch-gcd-in-ios)
 - [What is the difference between `Synchronous` & `Asynchronous` task?](#what-is-the-difference-between-synchronous--asynchronous-task)
@@ -80,6 +81,70 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### **Difference between `declarative` vs `imperative` programming?** 
+
+**Imperative Programming in Swift:**
+
+In an imperative style, you tell Swift how to achieve a goal, step by step. You control the exact flow, specify each action, and manually manage state changes. Traditional programming in Swift (especially with **UIKit**) is often imperative.
+
+**Key Characteristics:**
+
+- Step-by-step instructions.
+- Explicit control over flow and state.
+- Typically uses loops, conditionals, and variables to control behavior.
+
+With UIKit, creating a label would require you to manually define and manage its properties and layout.
+
+<details><summary>Imperative Example</summary>
+<p>
+    
+```swift
+import UIKit
+
+let label = UILabel()
+label.text = "Hello, World!"
+label.textColor = UIColor.blue
+label.textAlignment = .center
+label.frame = CGRect(x: 50, y: 100, width: 200, height: 40)
+view.addSubview(label)
+```
+</p>
+</details>
+
+**Declarative Programming in Swift:**
+
+In a declarative style, you describe what the desired result should look like, and Swift handles the underlying steps for you. **SwiftUI**, Swift’s UI framework introduced in 2019, is built around a declarative approach.
+
+**Key Characteristics:**
+
+- Describe what you want rather than how to achieve it.
+- Less explicit control over flow; instead, you specify the end result.
+- SwiftUI automatically updates the UI based on the state changes, often using state-driven logic.
+
+With SwiftUI, creating a label (Text view) is more concise and describes what the UI should look like.
+
+<details><summary>Declarative Example</summary>
+<p>
+
+```swift
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        Text("Hello, World!")
+            .foregroundColor(.blue)
+            .frame(width: 200, height: 40)
+            .background(Color.yellow)
+            .cornerRadius(10)
+    }
+}
+
+```
+</p>
+</details>
+
+
 
 ### **What are `PreferenceKey` used for?**
 
