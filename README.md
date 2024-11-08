@@ -5,6 +5,7 @@
 ---
 
 ## Content Questions: 
+- [What is the difference between `self` and `Self`?](#what-is-the-difference-between-self-and-self)
 - [How do I use `@State` and `@Binding` in SwiftUI?](#how-do-i-use-state-and-binding-in-swiftui)
 - [Difference between `.task()` vs `.onAppear()`](#difference-between-task-vs-onappear)
 - [Why SwiftUI uses `struct` for view and not `class`?](#why-swiftui-uses-struct-for-view-and-not-class)
@@ -87,7 +88,47 @@
 
 ---
 
-### How do I use `@State` and `@Binding` in SwiftUI?
+### **What is the difference between `self` and `Self`?**
+
+- **self**: 
+The self is used to refer to the current instance of a class, structure, or enumeration within its own instance methods or initializers. It is similar to this keyword in other programming languages. For example:
+
+```swift
+class MatchScore {
+
+    let value: Int
+    
+    init(value: Int) {
+        self.value = value
+    }
+}
+
+let cricketScore = MatchScore(value: 325)
+print(cricketScore.value) // print: 325
+```
+
+- **Self**:
+The Self is used to refer to the type of the current class, structure, or enumeration within its own methods or initializers. It is similar to this or typeof in other programming languages. Fro example:
+
+```swift
+protocol ScoreCreation {
+    static func create() -> Self
+}
+
+class MatchScore: ScoreCreation {
+
+    required init() { }
+
+    static func create() -> Self {
+        return self.init()
+    }
+}
+
+let scoreObject = MatchScore.create()
+print(type(of: scoreObject)) // print: "MatchScore"
+```
+
+### **How do I use `@State` and `@Binding` in SwiftUI?**
 **@State** is used to create a state property that can be read and written to, while **@Binding** is used to share a state with another view.
 
 ```swift
