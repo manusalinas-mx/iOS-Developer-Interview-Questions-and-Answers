@@ -816,38 +816,38 @@ dataManager.fetchAndProcessData()
 
     
 ```swift
-// Dependencia que queremos inyectar
+// Dependency we want to inject
 class PrinterService {
     func printMessage(_ message: String) {
         print("Printing: \(message)")
     }
 }
 
-// Clase que necesita la dependencia
+// Class where dependency is required
 class MessageHandler {
     private var printerService: PrinterService?
 
-    // Método para inyectar la dependencia
+    // Method where dependency is gonna be injected
     func setPrinterService(_ service: PrinterService) {
         self.printerService = service
     }
 
-    // Método que usa la dependencia
+    // Method where dependnecy is needed / used 
     func sendMessage(_ message: String) {
         printerService?.printMessage(message) ?? print("No printer service available")
     }
 }
 
 // Usage
-let printerService = PrinterService()  // Creamos la dependencia
-let messageHandler = MessageHandler()   // Creamos el objeto que la usará
+let printerService = PrinterService()  // Dependency instance
+let messageHandler = MessageHandler()   // Handley instance
 
-// Inyectamos la dependencia usando el método
+// Injecting dependency in the method
 messageHandler.setPrinterService(printerService)
 
-// Ahora podemos usar la funcionalidad que depende de PrinterService
+// Now we can use the funtionality
 messageHandler.sendMessage("Hello, Dependency Injection!")
-// Imprime: "Printing: Hello, Dependency Injection!"    
+// Output: "Printing: Hello, Dependency Injection!"    
 ```
 
 ### **Please explain types of notifications**
