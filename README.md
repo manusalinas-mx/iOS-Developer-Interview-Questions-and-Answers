@@ -5,6 +5,7 @@
 ---
 
 ## Content Questions: 
+- [What are SwiftUI `Modifiers`? Can you create some of your own and how?](#what-are-swiftui-modifiers-can-you-create-some-of-your-own-and-how)
 - [Difference between `declarative` vs `imperative` programming?](#difference-between-declarative-vs-imperative-programming)
 - [What are `PreferenceKey` used for?](#what-are-preferencekey-used-for)
 - [Explain what is `Grand Central Dispatch` (GCD) in iOS?](#explain-what-is-grand-central-dispatch-gcd-in-ios)
@@ -81,6 +82,75 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### **What are SwiftUI `Modifiers`? Can you create some of your own and how?**
+
+In **SwiftUI**, **modifiers** are methods you use to change the appearance, layout, and behavior of a view. Modifiers allow you to customize views in a declarative, chainable way.
+
+**Creating Custom Modifiers**
+
+You can create **custom modifiers** by conforming to the `ViewModifier` protocol. This allows you to encapsulate common view modifications into a single reusable modifier, making your code cleaner and more readable.
+
+**Let’s say we want to create a reusable style for text, with specific font, padding, and background color.**
+
+1. **Define the Custom Modifier:**
+
+```swift
+import SwiftUI
+
+struct CustomTextStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.title)
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+    }
+}
+
+struct ColoredBackground: ViewModifier {
+    var color: Color
+
+    func body(content: Content) -> some View {
+        content
+            .padding()
+            .background(color)
+            .cornerRadius(8)
+    }
+}
+```
+
+2. **Create an Extension for Easier Use:**
+
+```swift
+extension View {
+    func customTextStyle() -> some View {
+        self.modifier(CustomTextStyle())
+    }
+
+    func coloredBackground(color: Color) -> some View {
+        self.modifier(ColoredBackground(color: color))
+    }
+}
+```
+
+
+3. **Using the Custom Modifier:**
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        Text("Custom Styled Text")
+            .customTextStyle() // Applying our custom modifier
+
+        Text("Dynamic Background Color") 
+            .coloredBackground(color: .green)
+    }
+}
+
+```
+
 
 ### **Difference between `declarative` vs `imperative` programming?** 
 
