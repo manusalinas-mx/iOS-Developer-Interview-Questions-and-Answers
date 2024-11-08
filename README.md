@@ -5,6 +5,7 @@
 ---
 
 ## Content Questions: 
+- [How do I use `@State` and `@Binding` in SwiftUI?](#how-do-i-use-state-and-binding-in-swiftui)
 - [Difference between `.task()` vs `.onAppear()`](#difference-between-task-vs-onappear)
 - [Why SwiftUI uses `struct` for view and not `class`?](#why-swiftui-uses-struct-for-view-and-not-class)
 - [What are some advantages of using `SwiftUI` over `UIKit`?](#what-are-some-advantages-of-using-swiftui-over-uikit)
@@ -85,6 +86,27 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### How do I use `@State` and `@Binding` in SwiftUI?
+**@State** is used to create a state property that can be read and written to, while **@Binding** is used to share a state with another view.
+
+```swift
+struct ParentView: View {
+    @State private var isOn = false  // Declares and owns the state
+
+    var body: some View {
+        ToggleView(isOn: $isOn)  // Passes a binding
+    }
+}
+
+struct ToggleView: View {
+    @Binding var isOn: Bool  // Receives a binding to `isOn`
+
+    var body: some View {
+        Toggle("Switch", isOn: $isOn)  // Directly modifies the parent state
+    }
+}
+```
 
 ### Difference between `.task()` vs `.onAppear()`
 
