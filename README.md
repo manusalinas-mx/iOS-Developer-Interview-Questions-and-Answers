@@ -92,6 +92,8 @@ In SwiftUI, both **.task()** and **.onAppear()** are view modifiers that can be 
 
 Modifer `.task()` allows you to use the `async/await` directly to perform asynchronous work. While `.onAppear()` is an older modifier that can only run synchronous code, you need to use `Task` or `DispatchQueue` to bridge to async code.
 
+`.task()` is automatically canceled when the view disappears, helping with memory management.
+
 ```swift
 struct ContentView: View {
   @State var text: String = "Loading..."
