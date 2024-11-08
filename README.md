@@ -5,6 +5,8 @@
 ---
 
 ## Content Questions: 
+- [Why SwiftUI uses `struct` for view and not `class`?](#why-swiftui-uses-struct-for-view-and-not-class)
+- [What are some advantages of using `SwiftUI` over `UIKit`?](#what-are-some-advantages-of-using-swiftui-over-uikit)
 - [What are SwiftUI `Modifiers`? Can you create some of your own and how?](#what-are-swiftui-modifiers-can-you-create-some-of-your-own-and-how)
 - [Difference between `declarative` vs `imperative` programming?](#difference-between-declarative-vs-imperative-programming)
 - [What are `PreferenceKey` used for?](#what-are-preferencekey-used-for)
@@ -82,6 +84,40 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### **Why SwiftUI uses `struct` for view and not `class`?**
+
+- **No Shared State**: Structs provide value semantics, meaning each instance is a unique value and is passed by value rather than by reference. This eliminates concerns about shared mutable state, making it easier to reason about the app’s behavior and reducing the chances of unexpected side effects.
+
+- **Immutable by Default**: Structs in Swift are immutable by default, encouraging a more functional programming style where changes are made by creating new instances rather than mutating existing ones. This immutability helps maintain a clear and predictable flow of data, which is crucial in SwiftUI’s reactive paradigm.
+
+- **Performance Benefits**: Structs are generally more lightweight than classes, which can lead to performance benefits, especially when creating and managing multiple instances of views, as is common in SwiftUI.
+
+- **Thread Safety**: Since structs are immutable and don’t have shared state, they inherently mitigate some concerns related to thread safety. In SwiftUI, this aligns well with its reactive nature, where changes to the state trigger updates to the UI in a predictable and thread-safe manner.
+
+- **Automatic View Updating**: SwiftUI relies on value types like structs to automatically update views when their associated state changes. The use of structs simplifies this process by ensuring that changes to the state trigger UI updates without the need for explicit handling or observation.
+
+### **What are some advantages of using `SwiftUI` over `UIKit`?**
+
+- **Declarative Syntax**: SwiftUI uses a declarative syntax, allowing developers to describe the UI and its behavior in a concise and easy-to-understand manner. This approach reduces boilerplate code and simplifies the process of creating and maintaining user interfaces.
+
+- **Live Preview and Real-Time Editing**: SwiftUI provides a live preview feature in Xcode, enabling developers to see real-time changes made to the UI code. This instant feedback loop streamlines the development process and facilitates quicker iteration.
+  
+- **Less Code, More Flexibility**: With SwiftUI, developers can achieve complex layouts and interactions with significantly less code compared to UIKit. The framework’s built-in components and modifiers help create dynamic and adaptive interfaces with ease.
+  
+- **Unified Codebase for Multiple Platforms**: SwiftUI supports multi-platform development, allowing developers to use a single codebase to create user interfaces for iOS, macOS, watchOS, and tvOS applications. This unified approach simplifies the development and maintenance of applications across Apple platforms.
+  
+- **Automatic Adaptation to Different Device Sizes and Orientations**: SwiftUI’s layout system automatically adapts to different device sizes and orientations, making it easier to create responsive and adaptive user interfaces without manually handling constraints and size classes.
+  
+- **Native Integration with Swift**: SwiftUI is built using Swift and takes advantage of its language features, such as type safety, optionals, and closures. This native integration provides a seamless development experience for Swift developers.
+  
+- **Built-in Animations and Transitions**: SwiftUI simplifies the implementation of animations and transitions with its built-in animation APIs. Developers can easily add smooth and interactive animations to their UI elements using simple modifiers and transitions.
+  
+- **State Management Simplification**: SwiftUI introduces state management with features like @State, @Binding, @ObservedObject, and @EnvironmentObject, simplifying the handling of data and state changes within views.
+  
+- **Automatic Accessibility Support**: SwiftUI incorporates accessibility features by default, making it easier for developers to create apps that are accessible to users with disabilities. The framework encourages best practices for accessibility.
+  
+- **Enhanced Preview Support**: SwiftUI’s preview system in Xcode allows for better testing and visualisation of different states and scenarios of the UI, aiding in rapid prototyping and testing.
 
 ### **What are SwiftUI `Modifiers`? Can you create some of your own and how?**
 
