@@ -737,10 +737,131 @@ The most basic answer: If we need to wait on a couple of **asynchronous** or **s
 
 We use a **storyboard** or **xib** in our iOS app, then we created **IBOutlets**. **IBOutlet** is a property related to a view. These are injected into the view controller when it is instantiated, which is essentially a form of **Dependency Injection**.
 
-- There are forms of dependency injection: 
-  - constructor injection
-  - property injection
-  - method injection
+- **There are 3 forms of dependency injection:** 
+  - `constructor` injection
+
+<details><summary>Constructor Sample</summary>
+<p>
+    
+```swift
+// Protocol defining a data service
+protocol DataService {
+    func fetchData() -> [String]
+}
+
+// Concrete implementation of the data service
+class RemoteDataService: DataService {
+    func fetchData() -> [String] {
+        // Fetch data from a remote source
+        return ["Data1", "Data2", "Data3"]
+    }
+}
+
+// ViewModel for processing data
+class DataViewModel {
+    private let dataService: DataService
+
+    init(dataService: DataService) {
+        self.dataService = dataService
+    }
+
+    func fetchData() -> [String] {
+        return dataService.fetchData()
+    }
+}
+
+// Usage
+let remoteDataService = RemoteDataService()
+let dataViewModel = DataViewModel(dataService: remoteDataService)
+let data = dataViewModel.fetchData()
+print("Fetched Data:", data)
+```
+</p>
+</details>
+
+  - `property` injection
+
+<details><summary>Property Sample</summary>
+<p>
+
+```swift
+// Protocol defining a networking service
+protocol NetworkingService {
+    func fetchData(completion: @escaping ([String]?) -> Void)
+}
+
+// Concrete implementation of the networking service
+class APINetworkingService: NetworkingService {
+    func fetchData(completion: @escaping ([String]?) -> Void) {
+        // Simulate fetching data from an API
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            completion(["Result1", "Result2", "Result3"])
+        }
+    }
+}
+
+// Class that relies on the networking service through property injection
+class DataManager {
+    var networkingService: NetworkingService?
+
+    func fetchAndProcessData() {
+        networkingService?.fetchData { [weak self] data in
+            // Process the fetched data
+            print("Fetched Data:", data ?? "No data")
+        }
+    }
+}
+
+// Usage
+let apiNetworkingService = APINetworkingService()
+let dataManager = DataManager()
+dataManager.networkingService = apiNetworkingService
+dataManager.fetchAndProcessData()
+```
+</p>
+</details>
+
+  - `method` injection
+
+<details><summary>Method Sample</summary>
+<p>
+    
+```swift
+// Dependencia que queremos inyectar
+class PrinterService {
+    func printMessage(_ message: String) {
+        print("Printing: \(message)")
+    }
+}
+
+// Clase que necesita la dependencia
+class MessageHandler {
+    private var printerService: PrinterService?
+
+    // Método para inyectar la dependencia
+    func setPrinterService(_ service: PrinterService) {
+        self.printerService = service
+    }
+
+    // Método que usa la dependencia
+    func sendMessage(_ message: String) {
+        printerService?.printMessage(message) ?? print("No printer service available")
+    }
+}
+
+// Usage
+let printerService = PrinterService()  // Creamos la dependencia
+let messageHandler = MessageHandler()   // Creamos el objeto que la usará
+
+// Inyectamos la dependencia usando el método
+messageHandler.setPrinterService(printerService)
+
+// Ahora podemos usar la funcionalidad que depende de PrinterService
+messageHandler.sendMessage("Hello, Dependency Injection!")
+// Imprime: "Printing: Hello, Dependency Injection!"    
+```
+</p>
+</details>
 
 
 ### **Please explain types of notifications**
