@@ -5,6 +5,7 @@
 ---
 
 ## Content Questions: 
+- [Difference between `.task()` vs `.onAppear()`](#difference-between-task-vs-onappear)
 - [Why SwiftUI uses `struct` for view and not `class`?](#why-swiftui-uses-struct-for-view-and-not-class)
 - [What are some advantages of using `SwiftUI` over `UIKit`?](#what-are-some-advantages-of-using-swiftui-over-uikit)
 - [What are SwiftUI `Modifiers`? Can you create some of your own and how?](#what-are-swiftui-modifiers-can-you-create-some-of-your-own-and-how)
@@ -84,6 +85,60 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### Difference between `.task()` vs `.onAppear()`
+
+In SwiftUI, both **.task()** and **.onAppear()** are view modifiers that can be used to run some code when a view is shown. 
+
+Modifer `.task()` allows you to use the `async/await` directly to perform asynchronous work. While `.onAppear()` is an older modifier that can only run synchronous code, you need to use `Task` or `DispatchQueue` to bridge to async code.
+
+```swift
+struct ContentView: View {
+  @State var text: String = "Loading..."
+
+  // Async function
+  func asyncGetText() async -> String {
+    // Simulate some network request
+    await Task.sleep(3_000_000_000)
+    return "Hello, world!"
+  }
+
+  var body: some View {
+    Text(text)
+      .padding()
+      // Start a task when the view is shown
+      .task {
+        // Await the result of the async function
+        let result = await asyncGetText()
+        // Update the state with the result
+        text = result
+      }
+  }
+}
+
+// or Using onAppear
+struct ContentView: View {
+  /* ... */
+
+  var body: some View {
+    Text(text)
+      .padding()
+      // Run some code when the view is shown
+      .onAppear {
+        // Start a task to call the async function
+        Task {
+          // Await the result of the async function
+          let result = await asyncGetText()
+          // Update the state with the result
+          text = result
+        }
+      }
+  }
+}
+```
+
+
+
 
 ### **Why SwiftUI uses `struct` for view and not `class`?**
 
