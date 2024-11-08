@@ -5,6 +5,7 @@
 ---
 
 ## Content Questions: 
+- [What are `PreferenceKey` used for?](#what-are-preferencekey-used-for)
 - [Explain what is `Grand Central Dispatch` (GCD) in iOS?](#explain-what-is-grand-central-dispatch-gcd-in-ios)
 - [What is the difference between `Synchronous` & `Asynchronous` task?](#what-is-the-difference-between-synchronous--asynchronous-task)
 - [Why are the asynchronous tasks in iOS development important and how do you handle asynchronous programming in iOS apps?](#why-are-the-asynchronous-tasks-in-ios-development-important-and-how-do-you-handle-asynchronous-programming-in-ios-apps)
@@ -79,6 +80,68 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### **What are `PreferenceKey` used for?**
+
+In **SwiftUI**, a `PreferenceKey` is used to **pass data up** the view hierarchy, allowing child views to communicate information to their parent views. Typically, SwiftUI views pass data down the hierarchy using bindings, but there are scenarios where you need to send data from a child to a parent. This is where PreferenceKey comes in.
+
+**Use Cases:**
+
+- **Passing information from a child to a parent**: When a child view needs to share a value with its parent (such as layout information or a state change), but the parent isn’t directly responsible for managing the state.
+- **Layout and Geometry Changes**: It’s often used to propagate layout information, like the size of a child view, back up to a parent view to adjust its layout.
+- **Custom Layouts**: In cases where you want to create custom container views that need information from their children to adjust their layout, like calculating a size based on child views.
+
+**Here’s an example of how to use a PreferenceKey to pass a value (like a width) from a child view to its parent:**
+
+<details><summary>Example</summary>
+<p>
+
+```
+import SwiftUI
+
+// Define the PreferenceKey
+struct WidthPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
+
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = max(value, nextValue()) // Combine values (here we take the max width)
+    }
+}
+
+// Child view that sets the preference
+struct ChildView: View {
+    var body: some View {
+        Text("Hello, World!")
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .overlay(
+                GeometryReader { geometry in
+                    Color.clear
+                        .preference(key: WidthPreferenceKey.self, value: geometry.size.width)
+                }
+            )
+    }
+}
+
+// Parent view that receives the preference
+struct ParentView: View {
+    @State private var childWidth: CGFloat = 0
+
+    var body: some View {
+        VStack {
+            Text("Child width: \(childWidth)")
+            ChildView()
+                .onPreferenceChange(WidthPreferenceKey.self) { value in
+                    childWidth = value
+                }
+        }
+    }
+}
+```
+</p>
+</details>
+
 
 ### **Explain what is `Grand Central Dispatch` (GCD) in iOS?**
 
