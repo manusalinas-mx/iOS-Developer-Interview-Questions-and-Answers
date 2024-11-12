@@ -1,6 +1,7 @@
 # iOS Developer Interview Questions for all Senioritis levels
 ###### The most complete guide to help those looking to hire a developer for iOS.
-![top-10-ios-developer-interview-questions](https://user-images.githubusercontent.com/110424672/182920874-03ae4ffc-7ec4-44d9-ad16-1170d924ac70.png)
+![dis-resource-landscape-1260x710](https://github.com/user-attachments/assets/61b8c73b-f618-44c5-bd8c-c14d6564df67)
+
 
 ---
 
