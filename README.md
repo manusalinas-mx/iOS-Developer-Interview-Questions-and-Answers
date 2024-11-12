@@ -6,6 +6,7 @@
 ---
 
 ## Content Questions: 
+- [Example between `Reference type` and `Value Type`?](#example-between-reference-type-and-value-type)
 - [What is the difference between `self` and `Self`?](#what-is-the-difference-between-self-and-self)
 - [How do I use `@State` and `@Binding` in SwiftUI?](#how-do-i-use-state-and-binding-in-swiftui)
 - [Difference between `.task()` vs `.onAppear()`](#difference-between-task-vs-onappear)
@@ -88,6 +89,53 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### **Example between `Reference type` and `Value Type`?**
+
+```swift
+// Objects
+struct Man {
+    var name: String
+    var lastname: String
+}
+
+class Woman {
+    var name: String
+    var lastname: String
+
+    init(name: String, lastname: String) {
+        self.name = name
+        self.lastname = lastname
+    }
+}
+
+// Value type
+let hugo = Man(name: "Hugo", lastname: "Garcia")
+var juan = hugo
+juan.name = "Juan"
+
+print(hugo.name)
+print(juan.name)
+
+/** Output
+ - Hugo
+ - Juan
+ */
+
+// Reference type
+let maria = Woman(name: "Maria", lastname: "Garcia")
+var ana = maria
+ana.name = "Ana"
+
+print(maria.name)
+print(ana.name)
+
+/** Output
+ - Ana
+ - Ana
+ */
+
+```
 
 ### **What is the difference between `self` and `Self`?**
 
