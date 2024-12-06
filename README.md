@@ -678,7 +678,7 @@ There are 3 big benefits to guard statement.
 
 ### **What is the difference `Non-Escaping` and `Escaping` Closures?**
 
-• **@escaping**: The closure can be executed after the function terminates, either because it is stored or executed in an asynchronous operation.
+- **@escaping**: The closure can be executed after the function terminates, either because it is stored or executed in an asynchronous operation.
 
 ```swift
 // can be called after the function returns
@@ -689,7 +689,7 @@ func executeLater(action: @escaping () -> Void) {
 }
 ```
 
-• **@nonescaping**: The closure must be executed within the scope of the receiving function, and cannot be executed after the function terminates.
+- **@nonescaping**: The closure must be executed within the scope of the receiving function, and cannot be executed after the function terminates.
 
 ```swift
 // must be called before the function returns
