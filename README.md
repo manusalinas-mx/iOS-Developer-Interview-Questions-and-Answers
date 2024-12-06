@@ -678,16 +678,25 @@ There are 3 big benefits to guard statement.
 
 ### **What is the difference `Non-Escaping` and `Escaping` Closures?**
 
-- The lifecycle of a **non-escaping closure** is simple:
-  - Pass a closure into a function
-  - The function runs the closure (or not)
-  - The function returns
+• **@escaping**: The closure can be executed after the function terminates, either because it is stored or executed in an asynchronous operation.
 
-**Escaping closure** means, inside the function, you can still run the closure (or not); the extra bit of the closure is stored someplace that will outlive the function. 
+```swift
+// can be called after the function returns
+func executeLater(action: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        action() // executing later
+    }
+}
+```
 
-- There are several ways to have a closure escape its containing function:
-  - **Asynchronous execution**: If you execute the closure asynchronously on a dispatch queue, the queue will hold onto the closure for you. You have no idea when the closure will be executed and there’s no guarantee it will complete before the function returns.
-  - **Storage**: Storing the closure to a global variable, property, or any other bit of storage that lives on past the function call means the closure has also escaped.
+• **@nonescaping**: The closure must be executed within the scope of the receiving function, and cannot be executed after the function terminates.
+
+```swift
+// must be called before the function returns
+func executeNow(action: () -> Void) {
+    action() // immediate execution
+}
+```
 
 
 ### **Explain `[weak self]` and `[unowned self]`?**
