@@ -916,7 +916,26 @@ messageHandler.sendMessage("Hello, Dependency Injection!")
   - **Local notification** 
     - doesn't require server connection. Local notifications happen on device.
   - **Silent notification** 
-    - Similar no remote notifications but they are transparent for the user (no visual, no sound) to do something in the background.
+    - Similar to remote notifications but they are transparent for the user (no visual, no sound) to do something in the background.
+   
+![1_zOBBVwvZ31FLns_QfaE_AA](https://github.com/user-attachments/assets/0e936d95-8848-4fb1-b702-a3a520bc2c7e)
+
+To send background notifications, create a remote notification payload with apskey containing only the content-available key. This key indicates that the notification is silent and doesn’t require any user interaction.
+
+Sample
+
+```json
+{
+    "aps" : {
+        "content-available" : 1
+    },
+     "data" :{
+        "title" : "custom data",
+        "body" : "custom data"
+     }
+}
+```
+
 
 
 ### **What kind of `hight order functions` can we use on collection types?**
