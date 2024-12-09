@@ -922,7 +922,7 @@ messageHandler.sendMessage("Hello, Dependency Injection!")
 
 To send background notifications, create a remote notification payload with apskey containing only the content-available key. This key indicates that the notification is silent and doesn’t require any user interaction.
 
-Sample
+**Payload Sample**
 
 ```json
 {
@@ -940,14 +940,81 @@ Sample
 
 ### **What kind of `hight order functions` can we use on collection types?**
 
+**Model Sample:**
+```swift
+struct Person {
+    let name: String
+    let age: Int
+    let city: String
+}
+
+let people = [
+    Person(name: "Alice", age: 25, city: "New York"),
+    Person(name: "Bob", age: 32, city: "Los Angeles"),
+    Person(name: "Charlie", age: 19, city: "Chicago"),
+    Person(name: "Diana", age: 40, city: "New York")
+]
+```
+
 - **map(_:):** 
   - Returns an array of results after transforming each element in the sequence using the provided closure.
+
+ ```swift
+let numbers = [1, 2, 3, 4, 5]
+let squaredNumbers = numbers.map { $0 * $0 }
+print(squaredNumbers) // [1, 4, 9, 16, 25]
+
+let names = people.map { $0.name }
+print(names) // ["Alice", "Bob", "Charlie", "Diana"]
+
+let futureAges = people.map { $0.age + 5 }
+print(futureAges) // [30, 37, 24, 45]
+```
+
 - **filter(_:):** 
   - Returns an array of elements that satisfy the provided closure predicate.
+
+ ```swift
+let numbers = [1, 2, 3, 4, 5]
+let evenNumbers = numbers.filter { $0 % 2 == 0 }
+print(evenNumbers) // [2, 4]
+
+let olderThan30 = people.filter { $0.age > 30 }
+print(olderThan30.map { $0.name }) // ["Bob", "Diana"]
+
+let inNewYork = people.filter { $0.city == "New York" }
+print(inNewYork.map { $0.name }) // ["Alice", "Diana"]
+```
+
 - **reduce(_:_:):** 
   - Returns a single value by combining each element in the sequence using the provided closure.
+
+ ```swift
+let numbers = [1, 2, 3, 4, 5]
+let sum = numbers.reduce(0) { $0 + $1 }
+print(sum) // 15
+
+let totalAge = people.reduce(0) { $0 + $1.age }
+print(totalAge) // 116
+
+let allNames = people.reduce("") { $0 + $1.name + ", " }.dropLast(2)
+print(allNames) // "Alice, Bob, Charlie, Diana"
+```
+
 - **sorted(by:):** 
   - Returns an array of the elements in the sequence sorted based on the provided closure predicate.
+ 
+```swift
+let numbers = [3, 1, 4, 1, 5, 9]
+let sortedNumbers = numbers.sorted()
+print(sortedNumbers) // [1, 1, 3, 4, 5, 9]
+
+let sortedByAge = people.sorted { $0.age < $1.age }
+print(sortedByAge.map { $0.name }) // ["Charlie", "Alice", "Bob", "Diana"]
+
+let sortedByName = people.sorted { $0.name > $1.name }
+print(sortedByName.map { $0.name }) // ["Diana", "Charlie", "Bob", "Alice"]
+```
 
 
 ### **Explain `Bridging Headers` in iOS project**
