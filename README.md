@@ -6,6 +6,7 @@
 ---
 
 ## Content Questions: 
+- [Memory Leak exercise](#how-would-you-fix-this-memory-leak)
 - [Example between `Reference type` and `Value Type`?](#example-between-reference-type-and-value-type)
 - [What is the difference between `self` and `Self`?](#what-is-the-difference-between-self-and-self)
 - [How do I use `@State` and `@Binding` in SwiftUI?](#how-do-i-use-state-and-binding-in-swiftui)
@@ -89,6 +90,59 @@
 - [Explain how to present a `UIKit` ViewController on `SwiftUI`](#explain-how-to-present-a-uikit-viewcontroller-on-swiftui)
 
 ---
+
+### **How would you fix this memory leak?**
+
+```swift
+import Foundation
+
+class Person {
+    var name: String
+    var dog: Dog?
+
+    init(name: String) {
+        self.name = name
+        print("\(name) is born.")
+    }
+
+    deinit {
+        print("\(name) is being deinitialized.")
+    }
+}
+
+class Dog {
+    var name: String
+    var owner: Person?
+
+    init(name: String) {
+        self.name = name
+        print("\(name) is born.")
+    }
+
+    deinit {
+        print("\(name) is being deinitialized.")
+    }
+}
+
+var john: Person? = Person(name: "John")
+var fido: Dog? = Dog(name: "Fido")
+
+john?.dog = fido
+fido?.owner = john
+
+john = nil // release John
+fido = nil // release Fido
+```
+
+**Solution:**
+`owner` Property as **weak**:
+- By declaring the owner property as weak, it ensures that it does not hold a strong reference to the Person instance. As a result, when the Person instance is deallocated (set to nil), the weak reference automatically becomes nil, breaking the reference cycle.
+
+```swift
+weak var owner: Person? // Changed to weak to break the reference cycle
+```
+
+
 
 ### **Example between `Reference type` and `Value Type`?**
 
