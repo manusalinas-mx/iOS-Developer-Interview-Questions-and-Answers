@@ -1252,6 +1252,9 @@ It has 5 layers:
 - **E**ntity
 - **R**outer
 
+<img width="500" alt="viper" src="https://github.com/user-attachments/assets/89e25b92-68e8-41cf-8f51-d60167fb11be" />
+
+
 **Advantages** of Viper architecture is c**ommunication from one entity to another is given through protocols**. 
 
 > The idea is to isolate our app’s dependencies, balancing the delegation of responsibilities among the entities.
